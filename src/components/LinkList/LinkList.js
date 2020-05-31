@@ -1,10 +1,10 @@
 import React from 'react'
 import { useQuery } from '@apollo/react-hooks';
-import { feedQuery } from '../../graphql/queries/feedQuery'
+import { FEED_QUERY } from '../../graphql/queries/feedQuery'
 import { Link } from '../Link/Link'
 
 export const LinkList = () => {
-  const { loading, data, error } = useQuery(feedQuery, {
+  const { loading, data, error } = useQuery(FEED_QUERY, {
     variables: { language: 'english' },
   });
 
