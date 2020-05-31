@@ -2,7 +2,7 @@ import React from 'react'
 import { useMutation } from '@apollo/react-hooks';
 import { POST_MUTATION } from '../../graphql/mutations/postMutation'
 
-export const CreateLink = () => {
+export const CreateLink = (props) => {
   const [state, setState] = React.useState({
     description: '',
     url: '',
@@ -15,7 +15,9 @@ export const CreateLink = () => {
   }
 
   const handleCreatePost = () => {
-    postMutation({ variables: { description, url } })
+    postMutation({ variables: { description, url } }).then(() => {
+      props.history.push('/')
+    })
   }
 
   return (
