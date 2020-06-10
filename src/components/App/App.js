@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import { CreateLink } from '../CreateLink/CreateLink';
 import { Header } from '../Header/Header';
 import { LinkList } from '../LinkList/LinkList';
+import { Login } from '../Login/Login';
 import './App.css';
 
 export const App = () => {
@@ -13,6 +14,7 @@ export const App = () => {
         <Switch>
           <Route exact path="/" component={LinkList} />
           <Route exact path="/create" component={CreateLink} />
+          <Route exact path="/login" component={Login} />
         </Switch>
       </div>
     </div>

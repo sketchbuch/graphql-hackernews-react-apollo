@@ -8,15 +8,17 @@ export const CreateLink = (props) => {
     url: '',
   })
   const { description, url } = state
-  const [postMutation, { data, error, loading: submitting }] = useMutation(POST_MUTATION);
+  const [postMutation, { error, loading: submitting }] = useMutation(POST_MUTATION);
 
-  const handleInoutChange = (name) => (event) => {
+  const handleInputChange = (name) => (event) => {
     setState({ ...state, [name]: event.target.value })
   }
 
   const handleCreatePost = () => {
     postMutation({ variables: { description, url } }).then(() => {
       props.history.push('/')
+    }).catch(error => {
+      // Do nothing...
     })
   }
 
@@ -26,14 +28,14 @@ export const CreateLink = (props) => {
         <input
           className="mb2"
           value={description}
-          onChange={handleInoutChange('description')}
+          onChange={handleInputChange('description')}
           type="text"
           placeholder="A description for the link"
         />
         <input
           className="mb2"
           value={url}
-          onChange={handleInoutChange('url')}
+          onChange={handleInputChange('url')}
           type="text"
           placeholder="The URL for the link"
         />
