@@ -4,6 +4,7 @@ const { APP_SECRET, getUserId } = require('../utils')
 
 function post(parent, { url, description }, context) {
   const userId = getUserId(context)
+
   return context.prisma.createLink({
     url,
     description,
