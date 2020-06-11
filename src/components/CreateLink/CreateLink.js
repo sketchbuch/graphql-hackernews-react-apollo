@@ -1,6 +1,7 @@
 import React from 'react'
 import { useMutation } from '@apollo/react-hooks';
 import { POST_MUTATION } from '../../graphql/mutations/postMutation'
+import { updateCacheAfterPost } from './helpers/updateCacheAfterPost'
 
 export const CreateLink = (props) => {
   const [state, setState] = React.useState({
@@ -8,14 +9,15 @@ export const CreateLink = (props) => {
     url: '',
   })
   const { description, url } = state
-  const [postMutation, { error, loading: submitting }] = useMutation(POST_MUTATION);
+  const [postMutation, { client, error, loading: submitting }] = useMutation(POST_MUTATION);
 
   const handleInputChange = (name) => (event) => {
     setState({ ...state, [name]: event.target.value })
   }
 
   const handleCreatePost = () => {
-    postMutation({ variables: { description, url } }).then(() => {
+    postMutation({ variables: { description, url } }).then((data) => {
+      updateCacheAfterPost(client, data.data.post)
       props.history.push('/')
     }).catch(error => {
       // Do nothing...

@@ -45,6 +45,7 @@ export const Login = (props) => {
 
   const confirm = data => {
     const { token } = login ? data.login : data.signup
+    console.log('### token', token, data)
     saveUserData(token)
     props.history.push(`/`)
   }
