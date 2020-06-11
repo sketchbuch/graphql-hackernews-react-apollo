@@ -4,9 +4,12 @@ import { CreateLink } from '../CreateLink/CreateLink';
 import { Header } from '../Header/Header';
 import { LinkList } from '../LinkList/LinkList';
 import { Login } from '../Login/Login';
+import { Search } from '../Search/Search';
 import './App.css';
 
 export const App = () => {
+  const [filter, changeFilter] = React.useState('')
+
   return (
     <div className="center w85">
       <Header />
@@ -15,6 +18,10 @@ export const App = () => {
           <Route exact path="/" component={LinkList} />
           <Route exact path="/create" component={CreateLink} />
           <Route exact path="/login" component={Login} />
+          <Route
+            path='/search'
+            render={(routerProps) => <Search {...routerProps} changeFilter={changeFilter} filter={filter} />}
+          />
         </Switch>
       </div>
     </div>

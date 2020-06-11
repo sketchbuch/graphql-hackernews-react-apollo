@@ -25,13 +25,13 @@ export const Login = (props) => {
 
   const submitForm = async () => {
     if (login) {
-      loginMutation({ variables: { email, password, name } }).then(({ data }) => {
+      await loginMutation({ variables: { email, password, name } }).then(({ data }) => {
         confirm({ ...data })
       }).catch(error => {
         // Do nothing...
       })
     } else {
-      signupMutation({ variables: { email, password, name } }).then(({ data }) => {
+      await signupMutation({ variables: { email, password, name } }).then(({ data }) => {
         confirm({ ...data })
       }).catch(error => {
         // Do nothing...
@@ -45,7 +45,6 @@ export const Login = (props) => {
 
   const confirm = data => {
     const { token } = login ? data.login : data.signup
-    console.log('### token', token, data)
     saveUserData(token)
     props.history.push(`/`)
   }
