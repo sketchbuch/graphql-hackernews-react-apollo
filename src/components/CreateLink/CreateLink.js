@@ -18,7 +18,7 @@ export const CreateLink = (props) => {
   const handleCreatePost = () => {
     postMutation({ variables: { description, url } }).then((data) => {
       updateCacheAfterPost(client, data.data.post)
-      props.history.push('/')
+      props.history.push('/new/1')
     }).catch(error => {
       // Do nothing...
     })

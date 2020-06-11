@@ -13,10 +13,17 @@ export const Headercomp = (props) => {
         <Link to="/" className="ml1 no-underline black">
           Latest
         </Link>
+
+        <div className="ml1">|</div>
+        <Link to="/top" className="ml1 no-underline black">
+          Top Voted
+        </Link>
+
         <div className="ml1">|</div>
         <Link to="/search" className="ml1 no-underline black">
           Search
         </Link>
+
         {authToken && (
           <div className="flex">
             <div className="ml1">|</div>
@@ -35,7 +42,7 @@ export const Headercomp = (props) => {
               props.history.push(`/`)
             }}
           >
-            logout
+            Logout
           </div>
         )}
         {!authToken && (
